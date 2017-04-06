@@ -9,14 +9,10 @@
 
   <div class="text-right">
 
-    <% if current_user #登录才可以收藏 %>
-      <% if post.find_collect(current_user) %>
-        <%= link_to "取消收藏", uncollect_post_path(post), :method => :post, :class => "btn btn-primary" %>
-      <% else %>
-        <%= link_to "❤️", collect_post_path(post), :method => :post, :class => "btn btn-primary" %>
-      <% end %>
-    <% end %>
-    
+    <span id="post-collect-<%= post.id %>">
+      <%= render :partial => "collect", :locals => { :post => post} %>
+    </span>
+
     <span id="post-like-<%= post.id %>">
       <%= render :partial => "like", :locals => { :post => post} %>
     </span>
